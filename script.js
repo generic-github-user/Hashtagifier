@@ -1,3 +1,5 @@
+// script.js
+
 $("#input").on("input", hashtagify);
 $("#slider").on("input", hashtagify);
 
