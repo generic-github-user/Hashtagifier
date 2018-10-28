@@ -12,6 +12,13 @@ var last_frequency = 0.1;
 var input = "";
 var last_input = [];
 
+var tooltip;
+if (Math.random() < 0.5) {
+      tooltip = "Annoyingness";
+} else {
+      tooltip = "Hashtag frequency";
+}
+
 // Add a hashtag to the beginning of a string if there is not already one there
 function addtag(string) {
       if (string[0] !== "#") {
@@ -109,6 +116,10 @@ function hashtagify() {
       // Display output string in textarea
       $("#input")[0].value = output;
 
+      $("#slider-tooltip").text(tooltip + " set to " + Math.round(frequency * 100) + "%");
+
       last_input = input;
       last_frequency = frequency;
 }
+
+hashtagify();
