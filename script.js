@@ -23,8 +23,11 @@ function hashtagify() {
                   }
             }
 
+            // Number of words with hashtags
             var w_h = 0;
+            // Number of words without hashtags
             var w_nh = 0;
+            // Count number of words with and without hashtags
             for (var i = 0; i < tags.length; i++) {
                   if (tags[i] == 1) {
                         w_h++;
@@ -32,26 +35,35 @@ function hashtagify() {
                         w_nh++;
                   }
             }
+            // Total number of words
             var w_t = input.length;
+            // Calculate probability of adding a hashtag to any given word
             var p_h = ((frequency * w_t) - w_h) / w_t;
+            // Calculate probability of removing hashtag
             var p_nh = (((1 - frequency) * w_t) - w_nh) / w_t;
+            // Loop through each word in input text
             for (var i = 0; i < tags.length; i++) {
+                  // Check if hashtag frequency setting has increased
                   if (frequency > last_frequency) {
+                        // Current word does not have a hashtag
                         if (tags[i] == 0) {
                               if (Math.random() < p_h) {
+                                    // Add a hashtag to the word
                                     tags[i] = 1;
                               }
                         }
                   }
+                  // Hashtag frequency setting has decreased
                   if (frequency < last_frequency) {
+                        // Current word has a hashtag
                         if (tags[i] == 1) {
                               if (Math.random() < p_nh) {
+                                    // Remove hashtag from word
                                     tags[i] = 0;
                               }
                         }
                   }
             }
-            console.log(w_h, w_nh);
       }
 
       var output = "";
