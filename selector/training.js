@@ -7,7 +7,11 @@ const hashtag = [
       "cat",
       "apple",
       "vacation",
-      "youtube"
+      "youtube",
+      "google",
+      "tesla",
+      "samsung",
+      "mexican"
 ];
 const no_hashtag = [
       "if",
@@ -54,11 +58,10 @@ const denseLayer1 = tf.layers.dense({
       activation: "relu"
 });
 const denseLayer2 = tf.layers.dense({
-      units: 1,
-      activation: "relu"
+      units: 1
 });
 
-const optimizer = tf.train.sgd(0.01);
+const optimizer = tf.train.sgd(0.001);
 const loss = (pred, label) => pred.sub(label).mean().abs();
 
 const output = denseLayer2.apply(denseLayer1.apply(input));
@@ -67,7 +70,7 @@ const model = tf.model({
       outputs: output
 });
 
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < 1000; i++) {
       loss(model.predict(combined), output_data).print();
       optimizer.minimize(() => loss(model.predict(combined), output_data));
 }
