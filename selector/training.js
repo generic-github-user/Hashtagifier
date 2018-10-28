@@ -3,16 +3,25 @@
 const hashtag = [
       "pizza",
       "halloween",
-      "christmas"
+      "christmas",
+      "cat",
+      "apple",
+      "vacation",
+      "youtube"
 ];
 const no_hashtag = [
       "if",
       "so",
       "and",
       "with",
-      "on"
+      "on",
+      "no",
+      "off",
+      "in",
+      "out"
 ];
 
+// https://stackoverflow.com/a/6521513
 function longest(array) {
       return array.sort(function(a, b) {
             return b.length - a.length;
@@ -41,7 +50,7 @@ const input = tf.input({
 });
 
 const denseLayer1 = tf.layers.dense({
-      units: longest_word * charset.length,
+      units: longest_word * charset.length * 2,
       activation: "relu"
 });
 const denseLayer2 = tf.layers.dense({
@@ -50,7 +59,7 @@ const denseLayer2 = tf.layers.dense({
 });
 
 const optimizer = tf.train.sgd(0.01);
-const loss = (pred, label) => pred.sub(label).square().mean();
+const loss = (pred, label) => pred.sub(label).mean().abs();
 
 const output = denseLayer2.apply(denseLayer1.apply(input));
 const model = tf.model({
@@ -58,7 +67,7 @@ const model = tf.model({
       outputs: output
 });
 
-for (var i = 0; i < 1000; i++) {
-      optimizer.minimize(() => loss(model.predict(combined), output_data));
+for (var i = 0; i < 100; i++) {
       loss(model.predict(combined), output_data).print();
+      optimizer.minimize(() => loss(model.predict(combined), output_data));
 }
