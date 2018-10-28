@@ -23,15 +23,35 @@ function hashtagify() {
                   }
             }
 
+            var w_h = 0;
+            var w_nh = 0;
             for (var i = 0; i < tags.length; i++) {
-                  if (Math.random() < frequency) {
-                        if (tags[i] == 0 && frequency > last_frequency) {
-                              tags[i] = 1;
-                        } else if (tags[i] == 1 && frequency < last_frequency) {
-                              tags[i] = 0;
+                  if (tags[i] == 1) {
+                        w_h++;
+                  } else {
+                        w_nh++;
+                  }
+            }
+            var w_t = input.length;
+            var p_h = ((frequency * w_t) - w_h) / w_t;
+            var p_nh = (((1 - frequency) * w_t) - w_nh) / w_t;
+            for (var i = 0; i < tags.length; i++) {
+                  if (frequency > last_frequency) {
+                        if (tags[i] == 0) {
+                              if (Math.random() < p_h) {
+                                    tags[i] = 1;
+                              }
+                        }
+                  }
+                  if (frequency < last_frequency) {
+                        if (tags[i] == 1) {
+                              if (Math.random() < p_nh) {
+                                    tags[i] = 0;
+                              }
                         }
                   }
             }
+            console.log(w_h, w_nh);
       }
 
       var output = "";
