@@ -1,13 +1,18 @@
 // script.js
 
+// When any input changes, rehashtagify the input text
 $("#input").on("input", hashtagify);
 $("#slider").on("input", hashtagify);
 
-var tags = [];
+// Main variables
+// Frequency to insert hashtags in front of words
 var frequency = 0.1;
 var last_frequency = 0.1;
+// Input text in string format
+var input = "";
 var last_input = [];
 
+// Add a hashtag to the beginning of a string if there is not already one there
 function addtag(string) {
       if (string[0] !== "#") {
             string = "#" + string;
@@ -15,6 +20,7 @@ function addtag(string) {
       return string;
 }
 
+// Remove hashtag from a string, if one exists
 function removetag(string) {
       if (string[0] == "#") {
             string = string.substr(1);
@@ -24,7 +30,7 @@ function removetag(string) {
 
 function hashtagify() {
       frequency = $("#slider")[0].value / 100;
-      var input = $("#input")[0].value;
+      input = $("#input")[0].value;
       // input = input.replace(/#/g, "");
       if (input != undefined && input != "") {
             input = input.split(" ");
@@ -82,13 +88,18 @@ function hashtagify() {
             }
       }
 
+      // Create variable to store output string
       var output = "";
+      // Loop through all words in input
       for (var i = 0; i < input.length; i++) {
+            // Add current word to output string
             output += input[i];
+            // Only add a space after word if it is not the last word
             if (i < input.length - 1) {
                   output += " ";
             }
       }
+      // Display output string in textarea
       $("#input")[0].value = output;
 
       last_input = input;
