@@ -63,6 +63,13 @@ function hashtagify() {
             var p_h = ((frequency * w_t) - w_h) / w_t;
             // Calculate probability of removing hashtag
             var p_nh = (((1 - frequency) * w_t) - w_nh) / w_t;
+            if (frequency == 1) {
+                  p_h = 1;
+                  p_nh = 0;
+            } else if (frequency == 0) {
+                  p_h = 0;
+                  p_nh = 1;
+            }
             // Loop through each word in input text
             for (var i = 0; i < input.length; i++) {
                   // Check if hashtag frequency setting has increased
