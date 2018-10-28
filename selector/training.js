@@ -22,7 +22,12 @@ const no_hashtag = [
       "no",
       "off",
       "in",
-      "out"
+      "out",
+      "some",
+      "here",
+      "at",
+      "this",
+      "very"
 ];
 
 // https://stackoverflow.com/a/6521513
