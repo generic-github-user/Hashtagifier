@@ -5,11 +5,12 @@ const hashtag = [
       "cat",
       "apple",
       "vacation",
-      "youtube",
-      "google",
-      "tesla",
-      "samsung",
-      "mexican"
+      "YouTube",
+      "Google",
+      "Tesla",
+      "Samsung",
+      "mexican",
+      "CDN"
 ];
 const no_hashtag = [
       "if",
@@ -30,5 +31,9 @@ const no_hashtag = [
       "a",
       "I",
       "of",
-      "for"
+      "for",
+      "we",
+      "have",
+      "also",
+      "to"
 ];
