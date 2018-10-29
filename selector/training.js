@@ -1,37 +1,5 @@
 // training.js
 
-const hashtag = [
-      "pizza",
-      "halloween",
-      "christmas",
-      "cat",
-      "apple",
-      "vacation",
-      "youtube",
-      "google",
-      "tesla",
-      "samsung",
-      "mexican"
-];
-const no_hashtag = [
-      "if",
-      "so",
-      "and",
-      "with",
-      "on",
-      "no",
-      "off",
-      "in",
-      "out",
-      "some",
-      "here",
-      "at",
-      "this",
-      "very",
-      "not",
-      "a",
-      "I"
-];
 
 // https://stackoverflow.com/a/6521513
 function longest(array) {
