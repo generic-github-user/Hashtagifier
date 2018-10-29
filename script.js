@@ -19,6 +19,13 @@ if (Math.random() < 0.5) {
       tooltip = "Hashtag frequency";
 }
 
+var model;
+tf.loadModel("https://raw.githubusercontent.com/generic-github-user/Hashtagifier/master/selector/model/latest/model.json").then(x => model = x);
+
+function checktag(string) {
+      return model.predict(tf.tensor2d(encodeString(string, charset, 15), [1, 15 * charset.length])).dataSync()[0];
+}
+
 // Add a hashtag to the beginning of a string if there is not already one there
 function addtag(string) {
       if (string[0] !== "#") {
@@ -83,7 +90,7 @@ function hashtagify() {
                   if (frequency > last_frequency) {
                         // Current word does not have a hashtag
                         if (input[i][0] !== "#") {
-                              if (Math.random() < p_h) {
+                              if (Math.random() < (p_h * checktag(input[i]) * 2)) {
                                     // Add a hashtag to the word
                                     input[i] = addtag(input[i]);
                               }
@@ -93,7 +100,7 @@ function hashtagify() {
                   if (frequency < last_frequency) {
                         // Current word has a hashtag
                         if (input[i][0] == "#") {
-                              if (Math.random() < p_nh) {
+                              if (Math.random() < (p_nh * (1 - checktag(input[i])) * 2)) {
                                     // Remove hashtag from word
                                     input[i] = removetag(input[i]);
                               }
