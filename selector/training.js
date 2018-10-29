@@ -27,7 +27,10 @@ const no_hashtag = [
       "here",
       "at",
       "this",
-      "very"
+      "very",
+      "not",
+      "a",
+      "I"
 ];
 
 // https://stackoverflow.com/a/6521513
